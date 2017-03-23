@@ -9,7 +9,7 @@ import com.orhanobut.logger.Logger;
 public class LogUtil {
 
     public static boolean isDebug = BuildConfig.DEBUG;
-    private static final String TAG = "com.codeest.geeknews";
+    private static final String TAG = "MMMMM";
 
     public static void e(String tag,Object o) {
         if(isDebug) {

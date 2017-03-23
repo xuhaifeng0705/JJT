@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">JJT</string>
+    <string name="home_left_top_one">资讯</string>
+    <string name="home_left_top_two">选项</string>
+    <string name="home_left_one">one</string>
+    <string name="home_left_two">two</string>
+    <string name="home_left_three">three</string>
+    <string name="home_left_four">four</string>
+    <string name="home_left_five">five</string>
+    <string name="home_left_six">six</string>
+    <string name="home_left_seven">seven</string>
+    <string name="home_left_eight">eight</string>
 </resources>

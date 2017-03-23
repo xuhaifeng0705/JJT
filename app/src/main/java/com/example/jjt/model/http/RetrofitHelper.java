@@ -1,9 +1,11 @@
 package com.example.jjt.model.http;
 
 
-
 import com.example.jjt.BuildConfig;
 import com.example.jjt.app.Constants;
+import com.example.jjt.model.bean.WelcomeBean;
+import com.example.jjt.model.http.api.GanhuoApis;
+import com.example.jjt.model.http.response.GanhuoHttpResponse;
 import com.example.jjt.utils.SystemUtil;
 
 import java.io.File;
@@ -29,21 +31,11 @@ import rx.Observable;
 public class RetrofitHelper {
 
     private static OkHttpClient okHttpClient = null;
-//    private static ZhihuApis zhihuApiService = null;
-//    private static GankApis gankApiService = null;
-//    private static WeChatApis wechatApiService = null;
-//    private static MyApis myApiService = null;
-//    private static GoldApis goldApiService = null;
-//    private static VtexApis vtexApiService = null;
+    private static GanhuoApis ganhuoApiService=null;
 
     private void init() {
         initOkHttp();
-//        zhihuApiService = getApiService(ZhihuApis.HOST, ZhihuApis.class);
-//        gankApiService = getApiService(GankApis.HOST, GankApis.class);
-//        wechatApiService = getApiService(WeChatApis.HOST, WeChatApis.class);
-//        myApiService = getApiService(MyApis.HOST, MyApis.class);
-//        goldApiService = getApiService(GoldApis.HOST, GoldApis.class);
-//        vtexApiService = getApiService(VtexApis.HOST, VtexApis.class);
+        ganhuoApiService=getApiService(GanhuoApis.HOST,GanhuoApis.class);
     }
 
     public RetrofitHelper() {
@@ -123,6 +115,13 @@ public class RetrofitHelper {
                 .build();
         return retrofit.create(clz);
     }
+
+
+    public Observable<GanhuoHttpResponse<List<WelcomeBean>>> fetchWelcomeInfo(int num) {
+        return ganhuoApiService.getRandomGirl(num);
+    }
+
+
 
 //    public Observable<DailyListBean> fetchDailyListInfo() {
 //        return zhihuApiService.getDailyList();
