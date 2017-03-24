@@ -3,9 +3,12 @@ package com.example.jjt.model.http;
 
 import com.example.jjt.BuildConfig;
 import com.example.jjt.app.Constants;
+import com.example.jjt.model.bean.HomeCarouselModel;
 import com.example.jjt.model.bean.WelcomeBean;
 import com.example.jjt.model.http.api.GanhuoApis;
+import com.example.jjt.model.http.api.JJTApis;
 import com.example.jjt.model.http.response.GanhuoHttpResponse;
+import com.example.jjt.model.http.response.JJTHttpResponse;
 import com.example.jjt.utils.SystemUtil;
 
 import java.io.File;
@@ -32,10 +35,12 @@ public class RetrofitHelper {
 
     private static OkHttpClient okHttpClient = null;
     private static GanhuoApis ganhuoApiService=null;
+    private static JJTApis jjtApiService=null;
 
     private void init() {
         initOkHttp();
         ganhuoApiService=getApiService(GanhuoApis.HOST,GanhuoApis.class);
+        jjtApiService=getApiService(JJTApis.HOST,JJTApis.class);
     }
 
     public RetrofitHelper() {
@@ -116,10 +121,15 @@ public class RetrofitHelper {
         return retrofit.create(clz);
     }
 
-
+    //欢迎页面的图片获取
     public Observable<GanhuoHttpResponse<List<WelcomeBean>>> fetchWelcomeInfo(int num) {
         return ganhuoApiService.getRandomGirl(num);
     }
+    //首页启动页
+    public Observable<JJTHttpResponse<HomeCarouselModel>> fetchHomeCarousel() {
+        return jjtApiService.getHomeCarousel();
+    }
+
 
 
 

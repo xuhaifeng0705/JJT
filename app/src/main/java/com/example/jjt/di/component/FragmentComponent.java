@@ -17,7 +17,9 @@ import dagger.Component;
 public interface FragmentComponent {
 
     Activity getActivity();
+
     void inject(HomeFragment homeFragment);
+
 //    void inject(DailyFragment dailyFragment);
 //
 //    void inject(ThemeFragment themeFragment);

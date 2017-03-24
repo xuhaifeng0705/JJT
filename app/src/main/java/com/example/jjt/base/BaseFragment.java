@@ -8,6 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.jjt.app.App;
+import com.example.jjt.di.component.DaggerFragmentComponent;
+import com.example.jjt.di.component.FragmentComponent;
+import com.example.jjt.di.module.FragmentModule;
+
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
@@ -33,15 +38,15 @@ public abstract class BaseFragment<T extends BasePresenter> extends SupportFragm
         super.onAttach(context);
     }
 
-//    protected FragmentComponent getFragmentComponent(){
-//        return DaggerFragmentComponent.builder()
-//                .appComponent(App.getAppComponent())
-//                .fragmentModule(getFragmentModule())
-//                .build();
-//    }
-//    protected FragmentModule getFragmentModule(){
-//        return new FragmentModule(this);
-//    }
+    protected FragmentComponent getFragmentComponent(){
+        return DaggerFragmentComponent.builder()
+                .appComponent(App.getAppComponent())
+                .fragmentModule(getFragmentModule())
+                .build();
+    }
+    protected FragmentModule getFragmentModule(){
+        return new FragmentModule(this);
+    }
 
     @Nullable
     @Override

@@ -3,7 +3,6 @@ package com.example.jjt.ui.main.activity;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.Toolbar;
 
 import com.example.jjt.Presenter.MainPresenter;
 import com.example.jjt.Presenter.contract.MainContract;
@@ -12,19 +11,15 @@ import com.example.jjt.app.Constants;
 import com.example.jjt.base.BaseActivity;
 import com.example.jjt.ui.home.fragment.HomeFragment;
 import com.example.jjt.utils.SharedPreferenceUtil;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import butterknife.BindView;
+import me.yokeyword.fragmentation.SupportFragment;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View{
     @BindView(R.id.drawer)
     DrawerLayout mDrawerLayout;
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
     @BindView(R.id.navigation)
     NavigationView mNavigationView;
-    @BindView(R.id.view_search)
-    MaterialSearchView mSearchView;
 
 
     private HomeFragment mHomeFragment;
@@ -38,9 +33,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         }else{
             showFragment=SharedPreferenceUtil.getCurrentItem();
             hideFragment = Constants.TYPE_HOME;
-//            showHideFragment(getTargetFragment(showFragment), getTargetFragment(hideFragment));
+            showHideFragment(getTargetFragment(showFragment), getTargetFragment(hideFragment));
             mNavigationView.getMenu().findItem(R.id.drawer_zhihu).setChecked(false);
-            mToolbar.setTitle(mNavigationView.getMenu().findItem(getCurrentItem(showFragment)).getTitle().toString());
+//            mToolbar.setTitle(mNavigationView.getMenu().findItem(getCurrentItem(showFragment)).getTitle().toString());
             hideFragment = showFragment;
         }
     }
@@ -57,7 +52,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initEventAndData() {
-
+        mHomeFragment=new HomeFragment();
+        loadMultipleRootFragment(R.id.fl_main_content,0,mHomeFragment);
+        SharedPreferenceUtil.setCurrentItem(showFragment);
+        mDrawerLayout.closeDrawers();
+        showHideFragment(getTargetFragment(showFragment), getTargetFragment(hideFragment));
+        hideFragment = showFragment;
     }
 
     @Override
@@ -74,27 +74,27 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void showError(String msg) {
 
     }
-//    private SupportFragment getTargetFragment(int item) {
-//        switch (item) {
-//            case Constants.TYPE_HOME:
-//                return mHomeFragment;
-////            case Constants.TYPE_GANK:
-////                return mGankFragment;
-////            case Constants.TYPE_WECHAT:
-////                return mWechatFragment;
-////            case Constants.TYPE_GOLD:
-////                return mGoldFragment;
-////            case Constants.TYPE_VTEX:
-////                return mVtexFragment;
-////            case Constants.TYPE_LIKE:
-////                return mLikeFragment;
-////            case Constants.TYPE_SETTING:
-////                return mSettingFragment;
-////            case Constants.TYPE_ABOUT:
-////                return mAboutFragment;
-//        }
-//        return mHomeFragment;
-//    }
+    private SupportFragment getTargetFragment(int item) {
+        switch (item) {
+            case Constants.TYPE_HOME:
+                return mHomeFragment;
+//            case Constants.TYPE_GANK:
+//                return mGankFragment;
+//            case Constants.TYPE_WECHAT:
+//                return mWechatFragment;
+//            case Constants.TYPE_GOLD:
+//                return mGoldFragment;
+//            case Constants.TYPE_VTEX:
+//                return mVtexFragment;
+//            case Constants.TYPE_LIKE:
+//                return mLikeFragment;
+//            case Constants.TYPE_SETTING:
+//                return mSettingFragment;
+//            case Constants.TYPE_ABOUT:
+//                return mAboutFragment;
+        }
+        return mHomeFragment;
+    }
 
     private int getCurrentItem(int item) {
         switch (item) {
