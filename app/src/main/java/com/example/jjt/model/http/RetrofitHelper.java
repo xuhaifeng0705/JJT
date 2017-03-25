@@ -3,7 +3,10 @@ package com.example.jjt.model.http;
 
 import com.example.jjt.BuildConfig;
 import com.example.jjt.app.Constants;
+import com.example.jjt.model.bean.HomeArticleModel;
 import com.example.jjt.model.bean.HomeCarouselModel;
+import com.example.jjt.model.bean.HomeMenuModel;
+import com.example.jjt.model.bean.HomeShopModel;
 import com.example.jjt.model.bean.WelcomeBean;
 import com.example.jjt.model.http.api.GanhuoApis;
 import com.example.jjt.model.http.api.JJTApis;
@@ -128,6 +131,18 @@ public class RetrofitHelper {
     //首页启动页
     public Observable<JJTHttpResponse<HomeCarouselModel>> fetchHomeCarousel() {
         return jjtApiService.getHomeCarousel();
+    }
+    //首页分类
+    public Observable<JJTHttpResponse<HomeMenuModel>> fetchHomeMenu() {
+        return jjtApiService.getHomeMenu("jijitong123");
+    }
+    //首页文章
+    public Observable<JJTHttpResponse<List<HomeArticleModel>>> fetchArticle(String page, String pageSize) {
+        return jjtApiService.getHomeArticle(page,pageSize);
+    }
+    //首页商品
+    public Observable<JJTHttpResponse<HomeShopModel>>fetchHomeShop(String page, String show_type, String lng, String lat){
+        return jjtApiService.getHomeShop(page,show_type,lng,lat);
     }
 
 
