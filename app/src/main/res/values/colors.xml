@@ -30,4 +30,8 @@
 
     <color name="jjt_color">#37974F</color>
     <color name="jjt_color_dark">#76974F</color>
+    <color name="listview_line">#EBEBEB</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
 </resources>
