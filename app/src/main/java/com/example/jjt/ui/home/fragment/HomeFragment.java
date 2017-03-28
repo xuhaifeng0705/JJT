@@ -85,8 +85,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                page=1;
                 pageshop=1;
-                mPresenter.getShop(pageshop+"",show_type,lng,lat);
+                mPresenter.getCarousel();
+//                mPresenter.getShop(pageshop+"",show_type,lng,lat);
             }
         });
 

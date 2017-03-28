@@ -40,8 +40,36 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     @Override
     protected void initEventAndData() {
         mPresenter.getWelcomeData();
+//        mPresenter.getshop();
 
     }
+
+//    @Override
+//    public void showShop(TextModel homeShopModel) {
+//        ImageLoader.load(this,homeShopModel.getImg(), ivWelcomeBg);
+//        ivWelcomeBg.animate().scaleX(1.12f).scaleY(1.12f).setDuration(2000).setStartDelay(100).setListener(new Animator.AnimatorListener() {
+//            @Override
+//            public void onAnimationStart(Animator animator) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animator animator) {
+//                jumpToMain();
+//            }
+//
+//            @Override
+//            public void onAnimationCancel(Animator animator) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animator animator) {
+//
+//            }
+//        }).start();
+//        tvWelcomeAuthor.setText(homeShopModel.getTest2());
+//    }
 
     @Override
     public void showContent(List<WelcomeBean> welcomeBean) {
@@ -67,7 +95,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
             }
         }).start();
-//        tvWelcomeAuthor.setText(welcomeBean.getText());
+        tvWelcomeAuthor.setText(welcomeBean.get(0).get_id());
     }
 
     @Override

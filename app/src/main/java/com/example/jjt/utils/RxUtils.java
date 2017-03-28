@@ -70,8 +70,8 @@ public class RxUtils {
                         if(jjtHttpResponse.getCode() == 200) {
                             return createData(jjtHttpResponse.getResult());
                         } else {
-//                            return Observable.error(new ApiException("服务器返回error"));
-                            return Observable.error(new ApiException(jjtHttpResponse.getMessage()));
+                            return Observable.error(new ApiException("服务器返回error"));
+//                            return Observable.error(new ApiException(jjtHttpResponse.getMessage()));
                         }
                     }
                 });

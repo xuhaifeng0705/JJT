@@ -75,20 +75,32 @@ public class RetrofitHelper {
                     int maxAge = 0;
                     // 有网络时, 不缓存, 最大保存时长为0
                     response.newBuilder()
-                            .header("Cache-Control", "public, max-age=" + maxAge)
                             .removeHeader("Pragma")
+                            .header("Cache-Control", "public, max-age=" + maxAge)
                             .build();
                 } else {
                     // 无网络时，设置超时为4周
                     int maxStale = 60 * 60 * 24 * 28;
                     response.newBuilder()
-                            .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
                             .removeHeader("Pragma")
+                            .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
                             .build();
                 }
                 return response;
             }
         };
+//        Content-Type:text/html; charset=UTF-8;
+//        X-Powered-By:PHP/5.6.30;
+//        Set-Cookie:PHPSESSID=qa0l557a8ubgdkaj6ho9ik03j0; path=/;
+//        Expires:Thu, 19 Nov 1981 08:52:00 GMT;
+//        Pragma:no-cache;
+//        Content-Length:1377;
+//        Date:Tue, 28 Mar 2017 03:19:27 GMT;
+//        Server:Apache/2.4.6 (CentOS) PHP/5.6.30;
+//        Cache-Control:no-store, no-cache, must-revalidate, post-check=0, pre-check=0;
+
+
+
 //        Interceptor apikey = new Interceptor() {
 //            @Override
 //            public Response intercept(Chain chain) throws IOException {
@@ -144,6 +156,7 @@ public class RetrofitHelper {
     public Observable<JJTHttpResponse<HomeShopModel>>fetchHomeShop(String page, String show_type, String lng, String lat){
         return jjtApiService.getHomeShop(page,show_type,lng,lat);
     }
+
 
 
 

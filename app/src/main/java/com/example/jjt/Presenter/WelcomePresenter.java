@@ -48,4 +48,23 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
         addSubscrebe(rxSubscription);
 
     }
+
+//    @Override
+//    public void getshop() {
+//        Subscription rxSubscription=mRetrofitHelper.fetchHomeShop("1","","","")
+//                .compose(RxUtils.<JJTHttpResponse<TextModel>>rxSchedulerHelper())
+//                .compose(RxUtils.<TextModel>handleJJTResult())
+//                .subscribe(new Action1<TextModel>() {
+//                    @Override
+//                    public void call(TextModel homeShopModel) {
+//                        mView.showShop(homeShopModel);
+//                    }
+//                }, new Action1<Throwable>() {
+//                    @Override
+//                    public void call(Throwable throwable) {
+//                        mView.showError(throwable.getMessage().toString());
+//                    }
+//                });
+//        addSubscrebe(rxSubscription);
+//    }
 }

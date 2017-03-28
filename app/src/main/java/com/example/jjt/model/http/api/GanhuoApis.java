@@ -22,4 +22,5 @@ public interface GanhuoApis {
      */
     @GET("random/data/福利/{num}")
     Observable<GanhuoHttpResponse<List<WelcomeBean>>> getRandomGirl(@Path("num") int num);
+
 }

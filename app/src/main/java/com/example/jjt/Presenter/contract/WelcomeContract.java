@@ -16,7 +16,7 @@ public interface WelcomeContract {
     interface View extends BaseView {
 
         void showContent(List<WelcomeBean> welcomeBean);
-
+//        void showShop(TextModel textModel);//显示商店
         void jumpToMain();
 
     }
@@ -24,6 +24,7 @@ public interface WelcomeContract {
     interface  Presenter extends BasePresenter<View> {
 
         void getWelcomeData();
+//        void getshop();
 
     }
 }

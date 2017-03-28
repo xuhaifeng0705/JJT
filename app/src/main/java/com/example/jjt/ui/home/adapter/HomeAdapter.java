@@ -35,7 +35,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
 
     private HomeMenuAdapter menuAdapter;
-
+    private OnItemClickListener onItemClickListener;
     public enum ITEM_TYPE {
         ITEM_MENU,       //分类+文章title
         ITEM_WENZHANG,   //文章列表
@@ -81,7 +81,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if(holder instanceof MenuViewHolder){
             ((MenuViewHolder) holder).my_gridview.setAdapter(menuAdapter);
         }else if(holder instanceof ArticleViewHolder){
@@ -90,7 +90,15 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((ArticleViewHolder) holder).tv_zx_content.setText(mArticleList.get(position-1).getShort_content());
             ((ArticleViewHolder) holder).tv_zx_time.setText(mArticleList.get(position-1).getCreate_time());
             ((ArticleViewHolder) holder).tv_zx_see.setText(mArticleList.get(position-1).getView()+"");
-
+            ((ArticleViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(onItemClickListener != null) {
+                        ImageView iv = (ImageView) view.findViewById(R.id.siv_zx_pic);
+                        onItemClickListener.onItemClick(position-1,iv);
+                    }
+                }
+            });
 //            if (position == mZxlist.size() - 1) {//显示加载
 //                holderView3.tv_zx_add_more.setVisibility(View.VISIBLE);
 //                if (zixun) {
@@ -184,5 +192,12 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener=onItemClickListener;
+    }
+    public interface OnItemClickListener{
+        void onItemClick(int position,View view);
     }
 }
